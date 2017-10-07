@@ -15,10 +15,10 @@ import time
 
 HOSTS_PATH = "/etc/hosts"
 HOST_NAME  = "127.0.0.1\ttux-PAF4\n"
+HOSTS_SOURCE = "https://raw.githubusercontent.com/googlehosts/hosts/master/hosts-files/hosts"
+
 # HOSTS_SOURCE = "https://raw.githubusercontent.com/txthinking/google-hosts/master/hosts"
 # this hosts file is not longer maintained. just use the one in next line.  by tux ,20170413
-
-HOSTS_SOURCE = "https://raw.githubusercontent.com/racaljk/hosts/master/hosts"
 # HOSTS_SOURCE = "https://coding.net/u/scaffrey/p/hosts/git/raw/master/hosts"
 # this is the mirror hosts
 
@@ -27,6 +27,7 @@ def GetRemoteHosts(url):
     hosts = [line for line in f]
     f.close()
     return hosts
+
 
 def main():
     try:
@@ -38,9 +39,9 @@ def main():
         if hosts[i].startswith('127.0.0.1'):
             hosts.insert(i,HOST_NAME)
             break
-    # for line in hosts[:40]:
-    #     print line,
-        # print repr(line)
+    for line in hosts[:40]:
+        print line,
+        print repr(line)
 
 
     if os.path.isfile(HOSTS_PATH):
